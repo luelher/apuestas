@@ -1,0 +1,730 @@
+Calendario:
+  connection: doctrine
+  tableName: calendario
+  columns:
+    codjue:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_juego
+    fecjue:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codron:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codeqp1:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codeqp2:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    goles1:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    goles2:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    indica:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    horjue:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Equipo:
+      local: codeqp1
+      foreign: codeqp
+      type: one
+    Equipo_2:
+      class: Equipo
+      local: codeqp2
+      foreign: codeqp
+      type: one
+    Ronda:
+      local: codron
+      foreign: codron
+      type: one
+    QuinielaRonda1:
+      local: codjue
+      foreign: codjue
+      type: many
+Equipo:
+  connection: doctrine
+  tableName: equipo
+  columns:
+    codeqp:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_grupo
+    deseqp:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    grupo:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    abreqp:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Calendario:
+      local: codeqp
+      foreign: codeqp1
+      type: many
+    Calendario_2:
+      class: Calendario
+      local: codeqp
+      foreign: codeqp2
+      type: many
+    EquipoRonda:
+      local: codeqp
+      foreign: codeqp
+      type: many
+    QuinielaRondafinal:
+      local: codeqp
+      foreign: codeqp
+      type: many
+EquipoRonda:
+  connection: doctrine
+  tableName: equipo_ronda
+  columns:
+    codeqp:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    codron:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+  relations:
+    Equipo:
+      local: codeqp
+      foreign: codeqp
+      type: one
+    Ronda:
+      local: codron
+      foreign: codron
+      type: one
+FormaPago:
+  connection: doctrine
+  tableName: forma_pago
+  columns:
+    codforpag:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_forpag
+    desforpag:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Pago:
+      local: codforpag
+      foreign: codforpag
+      type: many
+Grupo:
+  connection: doctrine
+  tableName: grupo
+  columns:
+    codgru:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_grupo
+    desgru:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    login:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    clave:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Quiniela:
+      local: codgru
+      foreign: codgru
+      type: many
+Pago:
+  connection: doctrine
+  tableName: pago
+  columns:
+    codpag:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_pagos
+    despag:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    fechorpag:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codforpag:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    numquin:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    preuni:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '50'
+      primary: false
+    montot:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    moniva:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+  relations:
+    FormaPago:
+      local: codforpag
+      foreign: codforpag
+      type: one
+    Usuarios:
+      local: codusu
+      foreign: codusu
+      type: one
+    Usuarios_3:
+      class: Usuarios
+      local: codven
+      foreign: codusu
+      type: one
+Quiniela:
+  connection: doctrine
+  tableName: quiniela
+  columns:
+    codqui:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_quiniela
+    fecqui:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    tipqui:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codgru:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    puntos:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    forpag:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    numlidgol:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    goleqp1fin:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    goleqp2fin:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    codpag:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Grupo:
+      local: codgru
+      foreign: codgru
+      type: one
+    Vendedor:
+      local: codven
+      foreign: codven
+      type: one
+    QuinielaRonda1:
+      local: codqui
+      foreign: codqui
+      type: many
+    QuinielaRondafinal:
+      local: codqui
+      foreign: codqui
+      type: many
+QuinielaRonda1:
+  connection: doctrine
+  tableName: quiniela_ronda1
+  columns:
+    codqui:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    codjue:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    goles1:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    goles2:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    puntos:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+  relations:
+    Calendario:
+      local: codjue
+      foreign: codjue
+      type: one
+    Quiniela:
+      local: codqui
+      foreign: codqui
+      type: one
+QuinielaRondafinal:
+  connection: doctrine
+  tableName: quiniela_rondafinal
+  columns:
+    codqui:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    codeqp:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    codron:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    puntos:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    posic:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Equipo:
+      local: codeqp
+      foreign: codeqp
+      type: one
+    Quiniela:
+      local: codqui
+      foreign: codqui
+      type: one
+    Ronda:
+      local: codron
+      foreign: codron
+      type: one
+Ronda:
+  connection: doctrine
+  tableName: ronda
+  columns:
+    codron:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_ronda
+    desron:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Calendario:
+      local: codron
+      foreign: codron
+      type: many
+    EquipoRonda:
+      local: codron
+      foreign: codron
+      type: many
+    QuinielaRondafinal:
+      local: codron
+      foreign: codron
+      type: many
+Usuarios:
+  connection: doctrine
+  tableName: usuarios
+  columns:
+    codusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_usuarios
+    logusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    pasusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    tipusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    desusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    dirusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    telusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    celusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codciu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codban:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    numcue:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    emausu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    numtar:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    tiptar:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    fecven:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    stausu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    titcue:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codref:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cedusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    tipcue:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Pago:
+      local: codusu
+      foreign: codusu
+      type: many
+    Pago_3:
+      class: Pago
+      local: codusu
+      foreign: codven
+      type: many
+Vendedor:
+  connection: doctrine
+  tableName: vendedor
+  columns:
+    codven:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: seq_vendedor
+    logven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    pasven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    desven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    dirven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    telven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    celven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codban:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    numcue:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    emaven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    staven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    titcue:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cedven:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    tipcue:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Quiniela:
+      local: codven
+      foreign: codven
+      type: many
