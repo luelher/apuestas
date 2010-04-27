@@ -1,0 +1,7 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'pgsql:dbname=apuestas;host=localhost'
+      username: apdetodo_admin
+      password: apdetodo_admin
