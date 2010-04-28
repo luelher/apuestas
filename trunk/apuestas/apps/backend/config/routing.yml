@@ -22,7 +22,7 @@ vendedor:
 # default rules
 homepage:
   url:   /
-  param: { module: sfAdminDash, action: dashboard }
+  param: { module: home, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules
