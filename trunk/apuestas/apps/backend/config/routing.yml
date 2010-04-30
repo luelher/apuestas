@@ -1,3 +1,48 @@
+forma_pago:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                FormaPago
+    module:               formapago
+    prefix_path:          /formapago
+    column:               codforpag
+    with_wildcard_routes: true
+
+pago:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Pago
+    module:               regven
+    prefix_path:          /regven
+    column:               codpag
+    with_wildcard_routes: true
+
+banco:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Banco
+    module:               Bancos
+    prefix_path:          /Bancos
+    column:               codban
+    with_wildcard_routes: true
+
+deposito_regpagjug:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Deposito
+    module:               regpagjug
+    prefix_path:          /regpagjug
+    column:               coddep
+    with_wildcard_routes: true
+
+deposito:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Deposito
+    module:               pagojugador
+    prefix_path:          /pagojugador
+    column:               coddep
+    with_wildcard_routes: true
+
 quiniela:
   class: sfDoctrineRouteCollection
   options:

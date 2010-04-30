@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Pago
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          pago
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        despag: { label: "Descripción" }
+        fechorpag: { label: "Fecha" }
+        codusu: { label: "Cedula Cliente" }
+        codforpag: { label: "Forma de Pago" }
+        numquin: { label: "Cantida Quinielas" }
+        preuni: { label: "Precio Por Quiniela" }
+        montot: { label: "Total" }
+
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:
+        title: Venta de Quiniela
+        actions:
+          _save_and_add: ~
+

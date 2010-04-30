@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Deposito
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          deposito_regpagjug
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        fecdep: { label: "Fecha Depósito" }
+        numdep: { label: "Nro. Depósito/Trasferencia" }
+        tipdep: { label: "Tipo Depósito" }
+        lisqui: { label: "Quinielas" }
+        codban: { label: "Banco" }
+        nomdep: { label: "Depositante" }
+        ceddep: { label: "Cedula Depositante" }
+        mondep: { label: "Total Deposito" }
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:
+        title: Registrar Pago
+        display: [ _lisqui, tipdep, numdep, fecdep, mondep, codban, ceddep, nomdep ]
+        actions:
+          _save_and_add: ~
