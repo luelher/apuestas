@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    [main.css, 5386727ed21ca8900ec309914201ed05_all.css, classes-colors.css, print.css, site-colors.css]
 
-  javascripts:    []
+  javascripts:    [insertmedia.js]
 
   has_layout:     true
   layout:         layout
