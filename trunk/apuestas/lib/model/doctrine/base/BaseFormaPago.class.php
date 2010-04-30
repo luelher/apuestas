@@ -33,7 +33,7 @@ abstract class BaseFormaPago extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
-             'sequence' => 'seq_forpag',
+             //'sequence' => 'seq_forpag',
              'length' => '',
              ));
         $this->hasColumn('desforpag', 'string', null, array(

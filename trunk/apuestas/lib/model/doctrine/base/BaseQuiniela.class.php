@@ -21,8 +21,10 @@ Doctrine_Manager::getInstance()->bindComponent('Quiniela', 'doctrine');
  * @property string $codpag
  * @property Grupo $Grupo
  * @property Vendedor $Vendedor
+ * @property Doctrine_Collection $DepositoQuiniela
  * @property Doctrine_Collection $QuinielaRonda1
  * @property Doctrine_Collection $QuinielaRondafinal
+ * @property Doctrine_Collection $Traspaso
  * 
  * @method string              getCodqui()             Returns the current record's "codqui" value
  * @method date                getFecqui()             Returns the current record's "fecqui" value
@@ -38,8 +40,10 @@ Doctrine_Manager::getInstance()->bindComponent('Quiniela', 'doctrine');
  * @method string              getCodpag()             Returns the current record's "codpag" value
  * @method Grupo               getGrupo()              Returns the current record's "Grupo" value
  * @method Vendedor            getVendedor()           Returns the current record's "Vendedor" value
+ * @method Doctrine_Collection getDepositoQuiniela()   Returns the current record's "DepositoQuiniela" collection
  * @method Doctrine_Collection getQuinielaRonda1()     Returns the current record's "QuinielaRonda1" collection
  * @method Doctrine_Collection getQuinielaRondafinal() Returns the current record's "QuinielaRondafinal" collection
+ * @method Doctrine_Collection getTraspaso()           Returns the current record's "Traspaso" collection
  * @method Quiniela            setCodqui()             Sets the current record's "codqui" value
  * @method Quiniela            setFecqui()             Sets the current record's "fecqui" value
  * @method Quiniela            setTipqui()             Sets the current record's "tipqui" value
@@ -54,8 +58,10 @@ Doctrine_Manager::getInstance()->bindComponent('Quiniela', 'doctrine');
  * @method Quiniela            setCodpag()             Sets the current record's "codpag" value
  * @method Quiniela            setGrupo()              Sets the current record's "Grupo" value
  * @method Quiniela            setVendedor()           Sets the current record's "Vendedor" value
+ * @method Quiniela            setDepositoQuiniela()   Sets the current record's "DepositoQuiniela" collection
  * @method Quiniela            setQuinielaRonda1()     Sets the current record's "QuinielaRonda1" collection
  * @method Quiniela            setQuinielaRondafinal() Sets the current record's "QuinielaRondafinal" collection
+ * @method Quiniela            setTraspaso()           Sets the current record's "Traspaso" collection
  * 
  * @package    sf_sandbox
  * @subpackage model
@@ -72,7 +78,7 @@ abstract class BaseQuiniela extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
-             'sequence' => 'seq_quiniela',
+             //'sequence' => 'seq_quiniela',
              'length' => '',
              ));
         $this->hasColumn('fecqui', 'date', 25, array(
@@ -180,11 +186,19 @@ abstract class BaseQuiniela extends sfDoctrineRecord
              'local' => 'codven',
              'foreign' => 'codven'));
 
+        $this->hasMany('DepositoQuiniela', array(
+             'local' => 'codqui',
+             'foreign' => 'codqui'));
+
         $this->hasMany('QuinielaRonda1', array(
              'local' => 'codqui',
              'foreign' => 'codqui'));
 
         $this->hasMany('QuinielaRondafinal', array(
+             'local' => 'codqui',
+             'foreign' => 'codqui'));
+
+        $this->hasMany('Traspaso', array(
              'local' => 'codqui',
              'foreign' => 'codqui'));
     }

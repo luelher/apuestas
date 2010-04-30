@@ -1,3 +1,24 @@
+Banco:
+  connection: doctrine
+  tableName: banco
+  columns:
+    codban:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: banco_codban
+    desban:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Deposito:
+      local: codban
+      foreign: codban
+      type: many
 Calendario:
   connection: doctrine
   tableName: calendario
@@ -76,6 +97,107 @@ Calendario:
       local: codjue
       foreign: codjue
       type: many
+Deposito:
+  connection: doctrine
+  tableName: deposito
+  columns:
+    coddep:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: deposito_coddep
+    numdep:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    fecdep:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    mondep:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      default: '0'
+      primary: false
+    nomdep:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    ceddep:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codusu:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    tipdep:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    stadep:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codban:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Banco:
+      local: codban
+      foreign: codban
+      type: one
+    Usuarios:
+      local: codusu
+      foreign: codusu
+      type: one
+    DepositoQuiniela:
+      local: coddep
+      foreign: coddep
+      type: one
+DepositoQuiniela:
+  connection: doctrine
+  tableName: deposito_quiniela
+  columns:
+    coddep:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+    codqui:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: true
+  relations:
+    Quiniela:
+      local: codqui
+      foreign: codqui
+      type: one
+    Deposito:
+      local: coddep
+      foreign: coddep
+      type: one
 Equipo:
   connection: doctrine
   tableName: equipo
@@ -375,11 +497,19 @@ Quiniela:
       local: codven
       foreign: codven
       type: one
+    DepositoQuiniela:
+      local: codqui
+      foreign: codqui
+      type: many
     QuinielaRonda1:
       local: codqui
       foreign: codqui
       type: many
     QuinielaRondafinal:
+      local: codqui
+      foreign: codqui
+      type: many
+    Traspaso:
       local: codqui
       foreign: codqui
       type: many
@@ -501,6 +631,54 @@ Ronda:
       local: codron
       foreign: codron
       type: many
+Traspaso:
+  connection: doctrine
+  tableName: traspaso
+  columns:
+    codtra:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: traspaso_codtra
+    codusuold:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codusunew:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    fectra:
+      type: timestamp(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codqui:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Quiniela:
+      local: codqui
+      foreign: codqui
+      type: one
+    Usuarios:
+      local: codusunew
+      foreign: codusu
+      type: one
+    Usuarios_3:
+      class: Usuarios
+      local: codusuold
+      foreign: codusu
+      type: one
 Usuarios:
   connection: doctrine
   tableName: usuarios
@@ -626,6 +804,10 @@ Usuarios:
       notnull: false
       primary: false
   relations:
+    Deposito:
+      local: codusu
+      foreign: codusu
+      type: many
     Pago:
       local: codusu
       foreign: codusu
@@ -634,6 +816,15 @@ Usuarios:
       class: Pago
       local: codusu
       foreign: codven
+      type: many
+    Traspaso:
+      local: codusu
+      foreign: codusunew
+      type: many
+    Traspaso_3:
+      class: Traspaso
+      local: codusu
+      foreign: codusuold
       type: many
 Vendedor:
   connection: doctrine

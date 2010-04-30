@@ -27,53 +27,62 @@ Doctrine_Manager::getInstance()->bindComponent('Usuarios', 'doctrine');
  * @property string $codref
  * @property string $cedusu
  * @property string $tipcue
+ * @property Doctrine_Collection $Deposito
  * @property Doctrine_Collection $Pago
  * @property Doctrine_Collection $Pago_3
+ * @property Doctrine_Collection $Traspaso
+ * @property Doctrine_Collection $Traspaso_3
  * 
- * @method string              getCodusu() Returns the current record's "codusu" value
- * @method string              getLogusu() Returns the current record's "logusu" value
- * @method string              getPasusu() Returns the current record's "pasusu" value
- * @method string              getTipusu() Returns the current record's "tipusu" value
- * @method string              getDesusu() Returns the current record's "desusu" value
- * @method string              getDirusu() Returns the current record's "dirusu" value
- * @method string              getTelusu() Returns the current record's "telusu" value
- * @method string              getCelusu() Returns the current record's "celusu" value
- * @method string              getCodciu() Returns the current record's "codciu" value
- * @method string              getCodban() Returns the current record's "codban" value
- * @method string              getNumcue() Returns the current record's "numcue" value
- * @method string              getEmausu() Returns the current record's "emausu" value
- * @method string              getNumtar() Returns the current record's "numtar" value
- * @method string              getTiptar() Returns the current record's "tiptar" value
- * @method date                getFecven() Returns the current record's "fecven" value
- * @method string              getStausu() Returns the current record's "stausu" value
- * @method string              getTitcue() Returns the current record's "titcue" value
- * @method string              getCodref() Returns the current record's "codref" value
- * @method string              getCedusu() Returns the current record's "cedusu" value
- * @method string              getTipcue() Returns the current record's "tipcue" value
- * @method Doctrine_Collection getPago()   Returns the current record's "Pago" collection
- * @method Doctrine_Collection getPago3()  Returns the current record's "Pago_3" collection
- * @method Usuarios            setCodusu() Sets the current record's "codusu" value
- * @method Usuarios            setLogusu() Sets the current record's "logusu" value
- * @method Usuarios            setPasusu() Sets the current record's "pasusu" value
- * @method Usuarios            setTipusu() Sets the current record's "tipusu" value
- * @method Usuarios            setDesusu() Sets the current record's "desusu" value
- * @method Usuarios            setDirusu() Sets the current record's "dirusu" value
- * @method Usuarios            setTelusu() Sets the current record's "telusu" value
- * @method Usuarios            setCelusu() Sets the current record's "celusu" value
- * @method Usuarios            setCodciu() Sets the current record's "codciu" value
- * @method Usuarios            setCodban() Sets the current record's "codban" value
- * @method Usuarios            setNumcue() Sets the current record's "numcue" value
- * @method Usuarios            setEmausu() Sets the current record's "emausu" value
- * @method Usuarios            setNumtar() Sets the current record's "numtar" value
- * @method Usuarios            setTiptar() Sets the current record's "tiptar" value
- * @method Usuarios            setFecven() Sets the current record's "fecven" value
- * @method Usuarios            setStausu() Sets the current record's "stausu" value
- * @method Usuarios            setTitcue() Sets the current record's "titcue" value
- * @method Usuarios            setCodref() Sets the current record's "codref" value
- * @method Usuarios            setCedusu() Sets the current record's "cedusu" value
- * @method Usuarios            setTipcue() Sets the current record's "tipcue" value
- * @method Usuarios            setPago()   Sets the current record's "Pago" collection
- * @method Usuarios            setPago3()  Sets the current record's "Pago_3" collection
+ * @method string              getCodusu()     Returns the current record's "codusu" value
+ * @method string              getLogusu()     Returns the current record's "logusu" value
+ * @method string              getPasusu()     Returns the current record's "pasusu" value
+ * @method string              getTipusu()     Returns the current record's "tipusu" value
+ * @method string              getDesusu()     Returns the current record's "desusu" value
+ * @method string              getDirusu()     Returns the current record's "dirusu" value
+ * @method string              getTelusu()     Returns the current record's "telusu" value
+ * @method string              getCelusu()     Returns the current record's "celusu" value
+ * @method string              getCodciu()     Returns the current record's "codciu" value
+ * @method string              getCodban()     Returns the current record's "codban" value
+ * @method string              getNumcue()     Returns the current record's "numcue" value
+ * @method string              getEmausu()     Returns the current record's "emausu" value
+ * @method string              getNumtar()     Returns the current record's "numtar" value
+ * @method string              getTiptar()     Returns the current record's "tiptar" value
+ * @method date                getFecven()     Returns the current record's "fecven" value
+ * @method string              getStausu()     Returns the current record's "stausu" value
+ * @method string              getTitcue()     Returns the current record's "titcue" value
+ * @method string              getCodref()     Returns the current record's "codref" value
+ * @method string              getCedusu()     Returns the current record's "cedusu" value
+ * @method string              getTipcue()     Returns the current record's "tipcue" value
+ * @method Doctrine_Collection getDeposito()   Returns the current record's "Deposito" collection
+ * @method Doctrine_Collection getPago()       Returns the current record's "Pago" collection
+ * @method Doctrine_Collection getPago3()      Returns the current record's "Pago_3" collection
+ * @method Doctrine_Collection getTraspaso()   Returns the current record's "Traspaso" collection
+ * @method Doctrine_Collection getTraspaso3()  Returns the current record's "Traspaso_3" collection
+ * @method Usuarios            setCodusu()     Sets the current record's "codusu" value
+ * @method Usuarios            setLogusu()     Sets the current record's "logusu" value
+ * @method Usuarios            setPasusu()     Sets the current record's "pasusu" value
+ * @method Usuarios            setTipusu()     Sets the current record's "tipusu" value
+ * @method Usuarios            setDesusu()     Sets the current record's "desusu" value
+ * @method Usuarios            setDirusu()     Sets the current record's "dirusu" value
+ * @method Usuarios            setTelusu()     Sets the current record's "telusu" value
+ * @method Usuarios            setCelusu()     Sets the current record's "celusu" value
+ * @method Usuarios            setCodciu()     Sets the current record's "codciu" value
+ * @method Usuarios            setCodban()     Sets the current record's "codban" value
+ * @method Usuarios            setNumcue()     Sets the current record's "numcue" value
+ * @method Usuarios            setEmausu()     Sets the current record's "emausu" value
+ * @method Usuarios            setNumtar()     Sets the current record's "numtar" value
+ * @method Usuarios            setTiptar()     Sets the current record's "tiptar" value
+ * @method Usuarios            setFecven()     Sets the current record's "fecven" value
+ * @method Usuarios            setStausu()     Sets the current record's "stausu" value
+ * @method Usuarios            setTitcue()     Sets the current record's "titcue" value
+ * @method Usuarios            setCodref()     Sets the current record's "codref" value
+ * @method Usuarios            setCedusu()     Sets the current record's "cedusu" value
+ * @method Usuarios            setTipcue()     Sets the current record's "tipcue" value
+ * @method Usuarios            setDeposito()   Sets the current record's "Deposito" collection
+ * @method Usuarios            setPago()       Sets the current record's "Pago" collection
+ * @method Usuarios            setPago3()      Sets the current record's "Pago_3" collection
+ * @method Usuarios            setTraspaso()   Sets the current record's "Traspaso" collection
+ * @method Usuarios            setTraspaso3()  Sets the current record's "Traspaso_3" collection
  * 
  * @package    sf_sandbox
  * @subpackage model
@@ -250,6 +259,10 @@ abstract class BaseUsuarios extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Deposito', array(
+             'local' => 'codusu',
+             'foreign' => 'codusu'));
+
         $this->hasMany('Pago', array(
              'local' => 'codusu',
              'foreign' => 'codusu'));
@@ -257,5 +270,13 @@ abstract class BaseUsuarios extends sfDoctrineRecord
         $this->hasMany('Pago as Pago_3', array(
              'local' => 'codusu',
              'foreign' => 'codven'));
+
+        $this->hasMany('Traspaso', array(
+             'local' => 'codusu',
+             'foreign' => 'codusunew'));
+
+        $this->hasMany('Traspaso as Traspaso_3', array(
+             'local' => 'codusu',
+             'foreign' => 'codusuold'));
     }
 }

@@ -12,4 +12,25 @@
  */
 class Quiniela extends BaseQuiniela
 {
+  public function getDestipqui()
+  {
+    if($this->tipqui=='2') return 'Paga';
+    if($this->tipqui=='1') return 'Gratis';
+  }
+
+  public function getDisfecqui()
+  {
+    return date('d/m/Y', strtotime($this->fecqui));
+  }
+
+  public function PorValidar()
+  {
+
+    if($this->codpag==''){
+      $depqui = Doctrine::getTable('DepositoQuiniela')->findOneBy('codqui', $this->codqui);
+      if($depqui) return true;
+      else return false;
+    }else return false;
+
+  }
 }
