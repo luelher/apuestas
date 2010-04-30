@@ -63,7 +63,7 @@ abstract class BasePago extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
-             'sequence' => 'seq_pagos',
+             //'sequence' => 'seq_pagos',
              'length' => '',
              ));
         $this->hasColumn('despag', 'string', null, array(
