@@ -38,7 +38,7 @@ class regpagjugActions extends autoRegpagjugActions
     $this->form = $this->configuration->getForm();
     $this->deposito = $this->form->getObject();
 
-    $this->renderListQuinielas();
+    $this->renderListQuinielas($request);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -47,12 +47,27 @@ class regpagjugActions extends autoRegpagjugActions
     $this->deposito = $this->form->getObject();
 
     $this->processForm($request, $this->form);
-    $this->renderListQuinielas();
+    $this->renderListQuinielas($request);
     $this->setTemplate('new');
   }
 
-  private function renderListQuinielas() {
-    $id_usu = '14';
+  private function renderListQuinielas(sfWebRequest $request) {
+    $cedusu = "";
+    $cedusu =$request->getParameter('cedusu');
+
+    if($cedusu!=''){
+      $usu = Doctrine::getTable('Usuarios')->findOneBy('cedusu',$cedusu);
+      if($usu) $id_usu = $usu->getCodusu();
+      else{
+        $id_usu = '';
+      }
+    }else{
+      // Obtener Usuario de la Session Actual
+      $id_usu = '14';
+      // ----------------------
+    }
+
+    
 
     $quinielas = Doctrine::getTable('Quiniela')->findByDql("codusu= ? AND tipqui= ? AND codpag isnull", array($id_usu,'1'));
 
@@ -102,5 +117,4 @@ class regpagjugActions extends autoRegpagjugActions
       $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
     }
   }
-
 }
