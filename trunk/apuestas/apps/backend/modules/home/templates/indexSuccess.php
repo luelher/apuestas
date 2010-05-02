@@ -9,7 +9,7 @@
     </ul>
     <p> Vendedor:</p>
     <ul>
-      <li><a href="<?php echo url_for('pagovendedor/index') ?>">Registrar Pago</a></li>
+      <li><a href="<?php echo url_for('regpagven/index') ?>">Registrar Pago</a></li>
       <li><a href="<?php echo url_for('regven/index') ?>">Realizar Venta</a></li>
     </ul>
     <p> Administrador:</p>
