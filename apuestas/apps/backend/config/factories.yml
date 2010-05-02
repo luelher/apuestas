@@ -44,4 +44,4 @@ all:
   storage:
     class: sfSessionStorage
     param:
-      session_name: PHPSESSID
+      session_name: eZSESSID
